@@ -15,8 +15,13 @@ def create_person_list(people: list) -> list:
         person_list.append(pers)
     for person in people:
         pers = Person.people[person["name"]]
-        if "wife" in person and person["wife"]:
-            pers.wife = Person.people[person["wife"]]
-        if "husband" in person and person["husband"]:
-            pers.husband = Person.people[person["husband"]]
+
+        wife_name = person.get("wife")
+        if wife_name:
+            pers.wife = Person.people[wife_name]
+
+        husband_name = person.get("husband")
+        if husband_name:
+            pers.husband = Person.people[husband_name]
+
     return person_list
